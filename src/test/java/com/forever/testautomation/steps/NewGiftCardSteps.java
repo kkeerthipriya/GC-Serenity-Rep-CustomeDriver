@@ -28,7 +28,7 @@ public class NewGiftCardSteps {
     }
 
     public void openBrowser() {
-        driver.manage().timeouts().implicitlyWait(40,TimeUnit.SECONDS) ;
+        driver.manage().timeouts().implicitlyWait(45,TimeUnit.SECONDS) ;
         driver.get("https://mono.forevernew.com.au/");
     }
 
@@ -74,6 +74,7 @@ public class NewGiftCardSteps {
         jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 
         driver.switchTo().frame(driver.findElement(By.name("braintree-hosted-field-number")));
+      //  driver.switchTo().frame(driver.findElement(By.id("credit-card-number")));
         giftcardpage.creditCardNum.sendKeys(CreditCardNo);
         driver.switchTo().defaultContent();
         driver.switchTo().frame(driver.findElement(By.name("braintree-hosted-field-expirationMonth")));
@@ -99,6 +100,11 @@ public class NewGiftCardSteps {
         giftcardpage.verifyTC.click();
         giftcardpage.submitOrder.click();
 
+        try{
+            Thread.sleep(5000);
+        }catch (InterruptedException ie1) {
+            ie1.printStackTrace();
+        }
 
     }
 
